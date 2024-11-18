@@ -49,13 +49,13 @@ def main():
     warn_trigger_count = 0
     err_trigger_count = 0
     while True:
-        if warn_trigger_count == 10:
-          log_message("WARN", "Service having warning.", service_name, log_file)
-          warn_trigger_count = 0
+        if warn_trigger_count == 5:
+            log_message("WARN", "Service having warning.", service_name, log_file)
+            warn_trigger_count = 0
 
-        if err_trigger_count == 20:
-          log_message("ERROR", "Service having error.", service_name, log_file)
-          err_trigger_count = 0
+        if err_trigger_count == 10:
+            log_message("ERROR", "Service having error.", service_name, log_file)
+            err_trigger_count = 0
 
         log_message("INFO", "Service running smoothly.", service_name, log_file)
         send_heartbeat(service_name, log_file)
