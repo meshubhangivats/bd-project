@@ -1,0 +1,20 @@
+sudo apt update
+sudo apt install openjdk-11-jre -y
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+sudo sh -c 'echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" > /etc/apt/sources.list.d/elastic-7.x.list'
+sudo apt update
+sudo apt install elasticsearch -y
+Edit /etc/elasticsearch/elasticsearch.yml - if required
+    network.host: 0.0.0.0
+   cluster.initial_master_nodes: ["shubhangi-VMware-4"]  #Name of host on which ES running
+
+#Service status 
+sudo systemctl start elasticsearch
+sudo systemctl status elasticsearch
+sudo systemctl enable elasticsearch
+
+
+#Verify installation using 
+curl -X GET "localhost:9200/"
+To check contents of index bigdata
+curl -X GET "localhost:9200/bigdata/_search?pretty"
