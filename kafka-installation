@@ -1,0 +1,26 @@
+#https://www.digitalocean.com/community/tutorials/how-to-install-apache-kafka-on-ubuntu-20-04
+#Install this https://downloads.apache.org/kafka/3.9.0/kafka_2.13-3.9.0.tgz package
+
+#Check the service status and start and stop
+sudo systemctl status kafka
+sudo systemctl start kafka
+sudo systemctl stop kafka
+
+su kafka
+
+#Test Topic creation and Producer and Consumer
+/home/kafka/kafka/bin/kafka-topics.sh --create --topic test --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 
+
+#Listing of Topic
+/home/kafka/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
+
+#Producce some message
+echo "Hello, World" | /home/kafka/kafka/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test > /dev/null
+
+#Consume the message
+/home/kafka/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
+
+#For our project the topic name is bigdata
+
+
+
